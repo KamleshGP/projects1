@@ -9,11 +9,12 @@ from nltk.tokenize import word_tokenize
 
 
 
-# Download only if not already available
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
+import nltk.data
+
+# Force downloading to avoid rare 'punkt_tab' bug
+nltk.download('punkt')
+ps = PorterStemmer()
+
 
 
 # Step 3: Safely load vectorizer and model
