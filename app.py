@@ -5,6 +5,8 @@ import string
 import os
 import shutil
 from nltk.stem.porter import PorterStemmer
+from nltk.tokenize import word_tokenize
+
 
 # Remove corrupted tokenizer if it exists
 bad_path = os.path.expanduser('~/nltk_data/tokenizers/punkt_tab')
@@ -30,7 +32,8 @@ except Exception as e:
 # Step 4: Preprocessing function
 def trans_text(Text):
     Text = Text.lower()
-    Text = nltk.word_tokenize(Text)
+    Text = word_tokenize(Text)
+
 
     y = []
     for i in Text:
