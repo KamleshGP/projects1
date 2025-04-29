@@ -8,18 +8,13 @@ from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import word_tokenize
 
 
-# Remove corrupted tokenizer if it exists
-bad_path = os.path.expanduser('~/nltk_data/tokenizers/punkt_tab')
-if os.path.exists(bad_path):
-    shutil.rmtree(bad_path)
 
-# Also clear any corrupted 'punkt' tokenizer just to be sure
-punkt_path = os.path.expanduser('~/nltk_data/tokenizers/punkt')
-if os.path.exists(punkt_path):
-    shutil.rmtree(punkt_path)
+# Download only if not already available
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
-# Download correct punkt tokenizer
-nltk.download('punkt', force=True)
 
 # Step 3: Safely load vectorizer and model
 try:
